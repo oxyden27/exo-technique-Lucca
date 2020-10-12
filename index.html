@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="chatApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Accueil de l'exercice technique de Luc Marie" />
+    <title>Exercice Technique Lucca - LUC MARIE</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="icon" type="image/png" href="css/img/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+    <script src="./app.js"></script>
+
+</head>
+<body>
+    <div class="mainBody" ng-controller="ChatController">
+        <div class="band_header">
+            <img class="logo" src="./assets/Jumping CC.svg">
+        </div>
+        <div class="chat-messages">
+            <div class="chat-list-messages">
+                <div class="block-chat-list-messages" ng-repeat="message in messages">
+                  
+                <div class="author-chat" style="color:#333" ><b>{{message.author}}</b> {{message.time | date:'yyyy/MM/dd - HH:mm'}}</div>
+                  
+                  <div class="content-chat">
+                   <img ng-src="{{message.img}}" class="img-chat" ng-class="{left:message.me}">
+                    
+                    <p class="{{message.class}}" >{{message.message}}</p>
+                </div>    
+                </div>
+            </div>
+            <div class="container-temp" ng-if="messageInput">
+                <div ng-class="{show:messageInput}">
+<!--                    <img ng-src="{{messageInput.img}}" height="50px" style="float:left;" >-->
+                    <p>{{messageInput.author}} est entrain de taper un message ...</p>
+                </div>
+            </div>
+            <div >
+                <form class="container-submit" ng-submit="sendMessage()">
+                   <div class="left-side">
+                        <input class="input-submit" placeholder="Envoyer un message" ng-model="currentMessage" ng-change="updateInput()">
+                    </div>
+                    <div class="right-side">
+                        <button class="button-submit"><img class="logo-send" src="./assets/Send.svg"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
